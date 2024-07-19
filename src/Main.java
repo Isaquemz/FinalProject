@@ -7,6 +7,7 @@ public class Main {
         Scanner input = new Scanner(System.in);
         double[] salarioBruto = new double[qtdFuncionarios];
         boolean numberIsValid;
+        double valorDigitado;
 
         // Resgato os valores do usuario
         for (int i = 0; i < salarioBruto.length; i++) {
@@ -15,13 +16,23 @@ public class Main {
             numberIsValid = false;
             while(!numberIsValid) {
                 try {
+
                     System.out.println("Digite o valor do funcionario: " + (i+1));
-                    salarioBruto[i] = Double.parseDouble(input.nextLine());
-                    numberIsValid = true;
+                    valorDigitado = Double.parseDouble(input.nextLine());
+
+                    // Evita valores zerados e negativos
+                    if (valorDigitado > 0) {
+                        salarioBruto[i] = valorDigitado;
+                        numberIsValid = true;
+                    } else {
+                        System.out.println("Digite um numero maior que zero.");
+                    }
+
                 } catch (NumberFormatException e) {
                     System.out.println("Este numero não é valido, tente novamente!");
                 }
             }
+
         }
 
         return salarioBruto;
@@ -69,7 +80,6 @@ public class Main {
         // Iniciando valor como zero, ja atingindo regra até 1903.98
         double percentDesconto = 0;
 
-
         if (salario >= 1903.99 && salario <= 2826.65) {
             percentDesconto = 7.5;
         } else if (salario >= 2826.66 && salario <= 3751.05) {
@@ -98,6 +108,7 @@ public class Main {
             Quanto pagou ao INSS.
             Quanto pagou de Imposto de Renda.
             Salário líquido.
+
             Calcule os descontos e o salário líquido com base nas tabelas abaixo:
 
             Salário	% Desconto INSS
@@ -105,7 +116,6 @@ public class Main {
             de 1212,01 até 2.427,35	9%
             de 2.427,36 até 3.641,03	12%
             acima de 3.641,04	14%
-
 
             Salário	% Desconto Imposto de Renda
             até 1.903,98	0%
@@ -122,7 +132,7 @@ public class Main {
         double vrInssAtual;
         double vrImpostoRendaAtual;
 
-        // Resgata atraves de função, os valores.
+        // Resgata atravez de função, os valores.
         salarioBruto = getSalario(qtdFuncionarios);
 
         // Itera sobre os salarios, realizando os calculos
@@ -138,13 +148,14 @@ public class Main {
             System.out.println("-----------------------------------------");
             System.out.println("--------- Holerite disponivel -----------");
             System.out.println("-----------------------------------------");
-            System.out.println("Salario: R$" + salario);
-            System.out.println("Desconto Inss: R$" + vrInssAtual);
-            System.out.println("Desconto Imposto de Renda: R$" + vrImpostoRendaAtual);
-            System.out.println("------------------------------------------");
+            System.out.println("Salario: R$ " + salario);
+            System.out.println("Desconto Inss: R$ " + vrInssAtual);
+            System.out.println("Desconto Imposto de Renda: R$ " + vrImpostoRendaAtual);
+            System.out.println("-----------------------------------------");
             System.out.println("Total de Descontos: R$ " + totalDescontosAtual);
             System.out.println("Salario Liquido: R$ " + salarioLiquidoAtual);
-            System.out.println("------------------------------------------");
+            System.out.printf("-----------------------------------------%n%n");
+
         }
 
     }
