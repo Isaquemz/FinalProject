@@ -125,6 +125,8 @@ public class Main {
             Acima de 4.664,68	27,50%
          */
 
+        // Link GitHub: https://github.com/Isaquemz/FinalProject
+
         int qtdFuncionarios = 5;
         double[] salarioBruto;
         double salarioLiquidoAtual;
